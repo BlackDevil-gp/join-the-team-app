@@ -1,8 +1,8 @@
 # This project is a code test
 
-for [Epiceros](https://www.epiceros.com/).
+The code test is for [Epiceros](https://www.epiceros.com/).
 
-It's a conversion of this reference app to [CodePen](https://codepen.io/StoraH/pen/MWJGbzM) into a React App.
+It's a conversion from this reference app [CodePen](https://codepen.io/StoraH/pen/MWJGbzM) to a React App.
 
 ## Installation instructions
 
