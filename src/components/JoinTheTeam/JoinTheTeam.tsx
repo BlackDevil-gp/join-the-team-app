@@ -1,5 +1,5 @@
 import Checkbox from "@mui/joy/Checkbox";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import StandarButton from "../StandarComponents/StandarButton";
 import StandarInput from "../StandarComponents/StandarInput";
 import "./joinTheTeam.css";
@@ -15,6 +15,7 @@ export default function JoinTheTeam(): JSX.Element {
   const [userEmail, setUserEmail] = useState<string>("");
   const [emailError, setEmailError] = useState<boolean>(false);
   const [signUpLoading, setSignUpLoading] = useState<boolean>(false);
+  const nodeRef = useRef(null);
 
   // Get the registered users from the API
   useEffect(() => {
@@ -82,8 +83,8 @@ export default function JoinTheTeam(): JSX.Element {
           ) : (
             <TransitionGroup>
               {registerUsers.map((user, index) => (
-                <CSSTransition key={index} timeout={300} classNames="slide_vertical">
-                  <li>
+                <CSSTransition key={index} timeout={400} nodeRef={nodeRef} classNames="slide_vertical">
+                  <li ref={nodeRef}>
                     <span className="users_list">{user}</span>
                   </li>
                 </CSSTransition>
