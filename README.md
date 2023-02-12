@@ -1,8 +1,8 @@
 # This project is a code test
 
-for [Epiceros](https://www.epiceros.com/).
+The code test is for [Epiceros](https://www.epiceros.com/).
 
-It's a conversion of this reference app to [CodePen](https://codepen.io/StoraH/pen/MWJGbzM) into a React App.
+It's a conversion from this reference app [CodePen](https://codepen.io/StoraH/pen/MWJGbzM) to a React App.
 
 ## Installation instructions
 
@@ -13,7 +13,7 @@ It's a conversion of this reference app to [CodePen](https://codepen.io/StoraH/p
 3. If you chose to download the zip file, extract it to a directory of your choice.
 If you chose to clone the repository, open a terminal or command line window, navigate to the directory where you want to download the project, and run the following command:
 
-git clone https://github.com/BlackDevil-gp/join-the-team-app.git
+`git clone https://github.com/BlackDevil-gp/join-the-team-app.git`
 
 4. After cloning the repository, navigate into the project directory and install any necessary dependencies by running the following command:
 
