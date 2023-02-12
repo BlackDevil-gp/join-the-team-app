@@ -1,0 +1,10 @@
+.standar_button {
+    text-transform: none !important;
+    transition: .4s all !important;
+    font-weight: 500 !important;
+}
+
+.standar_button:hover {
+    transform: scale(1.05) !important;
+}
+
