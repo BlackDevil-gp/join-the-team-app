@@ -4,8 +4,9 @@ import StandarButton from "../StandarComponents/StandarButton";
 import StandarInput from "../StandarComponents/StandarInput";
 import "./joinTheTeam.css";
 import { getRegisteredUsers } from "../../api/joinTheTeamCalls";
-import { CircularProgress } from "@mui/joy";
-import { IRegisteredUsers } from '../../interfaces/users';
+import { IRegisteredUsers } from "../../interfaces/users";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 export default function JoinTheTeam(): JSX.Element {
   const [registerUsers, setRegisterUsers] = useState<string[]>([]);
@@ -15,6 +16,7 @@ export default function JoinTheTeam(): JSX.Element {
   const [emailError, setEmailError] = useState<boolean>(false);
   const [signUpLoading, setSignUpLoading] = useState<boolean>(false);
 
+  // Get the registered users from the API
   useEffect(() => {
     getRegisteredUsers().then((data: IRegisteredUsers) => {
       setRegisterUsers(data.team);
@@ -25,6 +27,7 @@ export default function JoinTheTeam(): JSX.Element {
     return setUserName(event.target.value);
   }
 
+  // Handle the Email input and check if the Email is valid else show an error msg
   function handleEmailInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const email = event.target.value;
@@ -41,6 +44,7 @@ export default function JoinTheTeam(): JSX.Element {
     setAgreeTerms(event.target.checked);
   }
 
+  // A simple delay, pretends the server delay to register the user
   async function waitForTwoSeconds() {
     return new Promise<void>((resolve) => {
       setTimeout(() => {
@@ -67,15 +71,24 @@ export default function JoinTheTeam(): JSX.Element {
           <span>the</span>
           <span>team</span>
         </h1>
-        <ul className="text-white">
+        <ul className="text-white ps-4">
           {registerUsers.length === 0 ? (
-            <CircularProgress color="neutral" size="sm" />
+            <div style={{ marginLeft: -20 }}>
+              <Skeleton variant="text" animation="wave" width={120} height={25} component="span" />
+              <Skeleton variant="text" animation="wave" width={70} height={25} component="span" />
+              <Skeleton variant="text" animation="wave" width={95} height={25} component="span" />
+              <Skeleton variant="text" animation="wave" width={105} height={25} component="span" />
+            </div>
           ) : (
-            <>
+            <TransitionGroup>
               {registerUsers.map((user, index) => (
-                <li key={index}>{user}</li>
+                <CSSTransition key={index} timeout={300} classNames="slide_vertical">
+                  <li>
+                    <span className="users_list">{user}</span>
+                  </li>
+                </CSSTransition>
               ))}
-            </>
+            </TransitionGroup>
           )}
         </ul>
       </div>
@@ -86,7 +99,14 @@ export default function JoinTheTeam(): JSX.Element {
         <StandarInput styles={{ marginBottom: 8 }} text={`Name`} onChange={handleNameInputChange} clearValue={userName} />
         <StandarInput styles={{ marginBottom: 4 }} text={`Email`} onChange={handleEmailInputChange} clearValue={userEmail} error={emailError} />
         {emailError && <span className="text-danger">Please provide a valid email.</span>}
-        <Checkbox className="mb-5 mt-3" color="primary" size="sm" label="I agree to the terms" checked={agreeTerms} onChange={handleAgreeTermsChange} />
+        <Checkbox
+          className="mb-5 mt-3"
+          color="primary"
+          size="sm"
+          label="I agree to the terms"
+          checked={agreeTerms}
+          onChange={handleAgreeTermsChange}
+        />
         <StandarButton
           styles={{ width: 200 }}
           text={`I'm in, sign me up!`}

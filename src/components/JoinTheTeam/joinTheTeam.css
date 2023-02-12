@@ -5,12 +5,43 @@
 
 .side_panel {
     background-color: #357edd;
-    padding: 2rem 4rem 2rem 4rem;
+    padding: 2rem 3rem 2rem 3rem;
+    width: 220px;
 }
 
 .register_form {
     max-width: 32rem;
     padding-left: 4rem;
+}
+
+.users_list {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* Transitions */
+
+.slide_vertical-enter {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+.slide_vertical-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s;
+}
+.slide_vertical-exit {
+    opacity: 1;
+    transform: translateY(0);
+}
+.slide_vertical-exit-active {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s;
 }
 
 @media only screen and (max-width: 800px) {
@@ -20,5 +51,7 @@
 
     .side_panel {
         width: 100%;
+        padding: 2rem 5rem 2rem 5rem;
+
     }
   }
